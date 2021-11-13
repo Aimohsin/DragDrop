@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <title>Using Drag and Drop</title>
+        <script>
+            function dragStart(e) {
+                e.dataTransfer.effectAllowed = "move";
+                e.dataTransfer.setData("Text", e.target.getAttribute("id"));
+            }
+
+            function dragOver(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                document.getElementById('message').innerHTML = "User is at home";
+            }
+
+            function drop(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                var data = e.dataTransfer.getData("Text");
+                e.target.appendChild(document.getElementById(data));
+            }
+
+            function dragOverOutsideHome(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                document.getElementById('message').innerHTML = "";
+            }
+
+            function dropOutsideHome(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                var data = e.dataTransfer.getData("Text");
+                e.target.appendChild(document.getElementById(data));
+            }
+        </script>
+    <style>
+        #dropBox {
+            justify-content: center;
+            width: 300px;
+            height: 300px;
+            border: 5px dashed gray;
+            background: lightyellow;
+            text-align: center;
+            margin: auto;
+            color: orange;
+        }
+        #dropBox img {
+            margin: 25px;
+        }
+        .drag-user {
+            margin: 25px;
+        }
+        .container {
+            text-align: center;
+            justify-content: center;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container" ondragover="dragOverOutsideHome(event);" ondrop="dropOutsideHome(event);">
+            <h2>Drag and Drop</h2>
+            <h3 id="message"></h3>
+            <div id="dropBox" ondragover="dragOver(event);" ondrop="drop(event);">
+                <p>Home</p>
+            </div>
+            <div class="drag-user" id="dragA" draggable="true" ondragstart="dragStart(event);" width="250" height="250">
+                <i class="fa fa-male fa-5x" aria-hidden="true" ></i>
+            </div>
+        </div>
+    </body>
+</html>
