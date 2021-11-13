@@ -49,15 +49,29 @@
             margin: auto;
             color: orange;
         }
-        #dropBox img {
-            margin: 25px;
-        }
         .drag-user {
             margin: 25px;
+
         }
         .container {
             text-align: center;
             justify-content: center;
+            height: 100%;
+        }
+
+        @media only screen and (min-width: 200px) and (max-width: 600px) {
+            .container h2 {
+                font-size: 5rem;
+            }
+            #dropBox {
+                width: 500px;
+                height: 500px;
+            }
+
+            .container #dropBox p {
+                font-size: 3rem;
+            }
+
         }
     </style>
     </head>
@@ -69,8 +83,9 @@
                 <p>Home</p>
             </div>
             <div class="drag-user" id="dragA" draggable="true" ondragstart="dragStart(event);" width="250" height="250">
-                <i class="fa fa-male fa-5x" aria-hidden="true" ></i>
+                <i class="fa fa-male fa-7x" aria-hidden="true" ></i>
             </div>
         </div>
+        <script src="DragDropTouch.js"></script>
     </body>
 </html>
